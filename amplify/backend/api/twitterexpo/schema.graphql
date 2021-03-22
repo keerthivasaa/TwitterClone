@@ -1,0 +1,19 @@
+type User @model {
+  id: ID!
+  name: String!
+  username: String!
+  email: String!
+  image: String!
+  tweets: [Tweet] @connection(keyName: "byUser", fields: ["id"])
+}
+
+type Tweet @model @key(name: "byUser", fields: ["userID"]) {
+  id: ID!
+  userID: ID!
+  content: String!
+  image: String!
+  user: User @connection(fields: ["userID"])
+}
+
+
+
